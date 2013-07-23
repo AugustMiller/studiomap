@@ -1,0 +1,39 @@
+/*
+	Global
+*/
+
+* {
+
+}
+
+html {
+
+}
+
+body {
+	font-family: $serifFamily;
+	background: $lightGrey;
+	color: $black;
+}
+
+h1 , h2 , h3 , h4 , h5 , h6 {
+	font-family: $sansFamily;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+a {
+	text-decoration: none;
+	outline: none;
+	&:link {
+		color: $darkGrey;
+	}
+
+	&:visited {
+		color: $darkGrey;
+	}
+
+	&:active {
+		color: $black;
+	}
+}
