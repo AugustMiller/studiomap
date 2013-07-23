@@ -62,11 +62,7 @@
 			'studio',
 			array(
 				'label' => __( 'Specialties' ),
-				'rewrite' => array( 'slug' => 'specialty' ),
-				'capabilities' => array(
-					'assign_terms' => 'edit_guides',
-					'edit_terms' => 'publish_guides'
-				)
+				'rewrite' => array( 'slug' => 'specialty' )
 			)
 		);
 	}

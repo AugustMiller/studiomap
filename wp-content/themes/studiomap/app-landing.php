@@ -31,6 +31,14 @@ get_header(); ?>
 					<input id="size-max" name="studio-size[max]" type="number" min="1" value="10" />
 					<input type="submit" value="submit it!" id="search-submit" />
 
+					<!-- Checkboxes for taxonomies! -->
+
+					<?php foreach ( get_terms( 'specialties' ) as $term ) { ?>
+						<pre>
+							<?php print_r( $term ); ?>
+						</pre>
+					<?php } ?>
+
 				</form>
 
 			</div><!-- #content -->
