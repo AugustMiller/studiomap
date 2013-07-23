@@ -42,7 +42,8 @@
 			'hierarchical' => false,
 			'menu_position' => 20,
 			'menu_icon' => "",	
-			'supports' => array()
+			'supports' => array(),
+			'taxonomies' => array('category', 'post_tag')
 		);
 
 		register_post_type( 'studio', $args );
@@ -50,6 +51,26 @@
 
 	add_action( 'init', 'studio_type_init' );
 
+	/*
+		Taxonomy for Studios
+	*/
+
+	function specialties_init() {
+		// Create a new taxonomy for studios' specialties
+		register_taxonomy(
+			'specialties',
+			'studio',
+			array(
+				'label' => __( 'Specialties' ),
+				'rewrite' => array( 'slug' => 'specialty' ),
+				'capabilities' => array(
+					'assign_terms' => 'edit_guides',
+					'edit_terms' => 'publish_guides'
+				)
+			)
+		);
+	}
+	add_action( 'init', 'specialties_init' );
 
 
 	/*
@@ -65,56 +86,114 @@
 	add_action( 'wp_ajax_studio-post', 'studio_post' );
 
 	function studio_post ( ) {
+
 		//	Override whatever headers WordPress has set.
 		header('Content-Type: application/json');
 
-		// echo json_encode($_POST);
+		// Die early for testing:
+		// echo json_encode($_POST); exit;
 
 		$params = $_POST;
-
+		$response = array(
+			"studios" => array()
+		);
 
 		$meta = array(
 			"relation" => "OR"
 		);
 
-		$search_name = ( $params["search"] ) ? ( $params["search"] ) : "";
+		/*
+			Add provided parameters to $meta ("meta_query")
+		*/
 
-		array_push( $meta , array(
-			// Studio Name Key
-			"key" => "field_51ee1fa6e61d4",
-			"value" => $search_name,
-			"compare" => "LIKE"
-		));
+		// Search Text
+
+		if ( $params["search"] !== "" ) {
+
+			$search_name = ( $params["search"] ) ? ( $params["search"] ) : "";
+
+			array_push( $meta , array(
+				// Studio Name Key
+				"key" => "name",
+				"value" => $search_name,
+				"compare" => "IN"
+			));
+		}
 
 
 
 		//	Studio Size
 
+		if ( $params["studio-size"]["min"] && $params["studio-size"]["max"] ) {
+			$search_size = array();
 
-		$search_size = array();
-		// $search_size["min"] = ( $params["studio-size"]["min"] ) ? ( $params["studio-size"]["min"] ) : ( 0 );
-		$search_size["min"] = $params["studio-size"]["min"];
-		// $search_size["max"] = ( $params["studio-size"]["max"] ) ? ( $params["studio-size"]["max"] ) : ( 9999 );
-		$search_size["max"] = $params["studio-size"]["max"];
+			$search_size["min"] = (int)( $params["studio-size"]["min"] ) ? (int)( $params["studio-size"]["min"] ) : ( 0 );
+			$search_size["max"] = (int)( $params["studio-size"]["max"] ) ? (int)( $params["studio-size"]["max"] ) : ( 9999 );
 
-		array_push( $meta , array(
-			// Studio Size Key
-			"key" => "field_51ee95319696d",
-			"value" => array( $search_size["min"] , $search_size["max"] ),
-			"type" => "numeric",
-			"compare" => "BETWEEN"
-		));
+			array_push( $meta , array(
+				// Studio Size Key
+				"key" => "size",
+				"value" => array( $search_size["min"] , $search_size["max"] ),
+				"type" => "NUMERIC",
+				"compare" => "BETWEEN"
+			));
+		}
 
-		// Push it!
+		// Year
+
+
+
+		/*
+			Gather the arguments
+		*/
 
 		$query = array(
 			"post_type" => "studio",
 			"meta_query" => $meta
 		);
 
-		$results = new WP_Query ( $query->posts );
 
-		echo json_encode( $results );
+		/*
+			Run the Query
+		*/
+
+		$results = new WP_Query ( $query );
+
+		/*
+			Grab Metadata
+		*/
+
+		$response["meta"] = array(
+			"found" => (int)($results->found_posts),
+			"hash" => $results->query_vars_hash
+		);
+
+		if ( $results->have_posts() ) {
+			while ( $results->have_posts() ) {
+
+				// Get set up:
+				$results->the_post();
+
+				$fields = get_fields( $post->ID );
+
+				$payload = array(
+					"wp" => $post,
+					"body" => $fields
+				);
+
+				array_push( $response["studios"] , $payload );
+			}
+
+		} else {
+			$response["studios"] = array();
+		}
+
+
+		/*
+			Bippity-Boppity-Boop!
+		*/
+
+		echo json_encode( $response );
 
 		// Quit the process and let the response loose:
 		exit;
