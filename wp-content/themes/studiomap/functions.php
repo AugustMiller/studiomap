@@ -43,11 +43,79 @@
 			'menu_position' => 20,
 			'menu_icon' => "",	
 			'supports' => array()
-		); 
+		);
 
 		register_post_type( 'studio', $args );
 	}
 
 	add_action( 'init', 'studio_type_init' );
 
-?>
+
+
+	/*
+		For our maps AJAX interface
+	*/
+
+	wp_enqueue_script( 'studio-post', get_bloginfo("template_directory") . '/js/studio-app.js', array( 'jquery' ) );
+
+	// Tie the app to the admin-ajax.php handler.
+	wp_localize_script( 'studio-post', 'Studios', array( 'endpoint' => admin_url( 'admin-ajax.php' ) ) );
+
+	add_action( 'wp_ajax_nopriv_studio-post', 'studio_post' );
+	add_action( 'wp_ajax_studio-post', 'studio_post' );
+
+	function studio_post ( ) {
+		//	Override whatever headers WordPress has set.
+		header('Content-Type: application/json');
+
+		// echo json_encode($_POST);
+
+		$params = $_POST;
+
+
+		$meta = array(
+			"relation" => "OR"
+		);
+
+		$search_name = ( $params["search"] ) ? ( $params["search"] ) : "";
+
+		array_push( $meta , array(
+			// Studio Name Key
+			"key" => "field_51ee1fa6e61d4",
+			"value" => $search_name,
+			"compare" => "LIKE"
+		));
+
+
+
+		//	Studio Size
+
+
+		$search_size = array();
+		// $search_size["min"] = ( $params["studio-size"]["min"] ) ? ( $params["studio-size"]["min"] ) : ( 0 );
+		$search_size["min"] = $params["studio-size"]["min"];
+		// $search_size["max"] = ( $params["studio-size"]["max"] ) ? ( $params["studio-size"]["max"] ) : ( 9999 );
+		$search_size["max"] = $params["studio-size"]["max"];
+
+		array_push( $meta , array(
+			// Studio Size Key
+			"key" => "field_51ee95319696d",
+			"value" => array( $search_size["min"] , $search_size["max"] ),
+			"type" => "numeric",
+			"compare" => "BETWEEN"
+		));
+
+		// Push it!
+
+		$query = array(
+			"post_type" => "studio",
+			"meta_query" => $meta
+		);
+
+		$results = new WP_Query ( $query->posts );
+
+		echo json_encode( $results );
+
+		// Quit the process and let the response loose:
+		exit;
+	}
