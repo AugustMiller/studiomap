@@ -36,6 +36,8 @@
 
 		<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/stylesheets/base.css" type="text/css" />
 
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
 		<script type="text/javascript" src="//use.typekit.net/rpd3hfk.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
