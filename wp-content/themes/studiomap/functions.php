@@ -114,7 +114,7 @@
 				// Studio Name Key
 				"key" => "studio_name",
 				"value" => $search_name,
-				"compare" => "IN"
+				"compare" => "LIKE"
 			));
 		}
 
