@@ -43,7 +43,7 @@
 			'menu_position' => 20,
 			'menu_icon' => "",	
 			'supports' => array(),
-			'taxonomies' => array('category', 'post_tag')
+			'taxonomies' => array('category','specialties')
 		);
 
 		register_post_type( 'studio', $args );
@@ -94,7 +94,9 @@
 			"studios" => array()
 		);
 
-		$meta = array(
+		$meta = array();
+
+		$tax = array(
 			"relation" => "OR"
 		);
 
@@ -110,7 +112,7 @@
 
 			array_push( $meta , array(
 				// Studio Name Key
-				"key" => "name",
+				"key" => "studio_name",
 				"value" => $search_name,
 				"compare" => "IN"
 			));
@@ -120,7 +122,7 @@
 
 		//	Studio Size
 
-		if ( $params["studio-size"]["min"] && $params["studio-size"]["max"] ) {
+		if ( $params["include-studio-size"] ) {
 			$search_size = array();
 
 			$search_size["min"] = (int)( $params["studio-size"]["min"] ) ? (int)( $params["studio-size"]["min"] ) : ( 0 );
@@ -138,6 +140,37 @@
 		// Year
 
 
+		//	Specialties
+
+		if ( $params["specialties"] ) {
+			$specialties = $params["specialties"];
+			array_map( "makeIntegers" , $specialties );
+
+			// echo json_encode($specialties); exit;
+
+			array_push( $tax , array(
+				'taxonomy' => 'specialties',
+				'field' => 'id',
+				'terms' => $specialties,
+				'operator' => 'IN'
+			));
+		}
+
+		if ( $params["categories"] ) {
+			$categories = $params["categories"];
+			array_map( "makeIntegers" , $categories );
+			
+			// echo json_encode($specialties); exit;
+
+			array_push( $tax , array(
+				'taxonomy' => 'category',
+				'field' => 'id',
+				'terms' => $categories,
+				'operator' => 'IN'
+			));
+
+		}
+
 
 		/*
 			Gather the arguments
@@ -145,7 +178,8 @@
 
 		$query = array(
 			"post_type" => "studio",
-			"meta_query" => $meta
+			"meta_query" => $meta,
+			"tax_query" => $tax
 		);
 
 
@@ -155,13 +189,18 @@
 
 		$results = new WP_Query ( $query );
 
+		// Spit out the Query and die early
+		// echo json_encode( $results ); exit;
+
 		/*
 			Grab Metadata
 		*/
 
 		$response["meta"] = array(
 			"found" => (int)($results->found_posts),
-			"hash" => $results->query_vars_hash
+			"hash" => $results->query_vars_hash,
+			"query" => $results->query,
+			"server" => $_POST
 		);
 
 		if ( $results->have_posts() ) {
@@ -173,7 +212,7 @@
 				$fields = get_fields( $post->ID );
 
 				$payload = array(
-					"wp" => $post,
+					"wp" => (array)$post,
 					"body" => $fields
 				);
 
@@ -194,3 +233,9 @@
 		// Quit the process and let the response loose:
 		exit;
 	}
+
+	function makeIntegers ( $string ) {
+		return intval( $string );
+	}
+
+

@@ -6,6 +6,7 @@ var jqxhr;
 
 $(document).ready( function ( ) {
 	console.log("Hello!");
+
 	$("#studio-query").on( 'submit' , function( e ) {
 
 		// Prevent default posting of form
