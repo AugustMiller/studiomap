@@ -37,6 +37,7 @@
 		<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/stylesheets/base.css" type="text/css" />
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
 		<script type="text/javascript" src="//use.typekit.net/rpd3hfk.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -50,12 +51,20 @@
 	<body <?php body_class(); ?>>
 		
 		<div id="page">
-
-			<header id="navigation">
-				<h1>
-					<a href="<?php echo get_option('home'); ?>/">
-						<?php bloginfo('name'); ?>
-					</a>
-				</h1>
-			</header>
+			<section class="menu">
+				<header id="navigation">
+					<div class="wrapper clearfix">
+						<div class="column col-12">
+							<div class="menu-content clearfix">
+								<h1>
+									<a href="<?php echo get_option('home'); ?>/">
+										<?php bloginfo('name'); ?>
+									</a>
+								</h1>
+								<span class="filter-button">Filter</span>
+							</div>
+						</div>
+					</div>
+				</header>
+			</section>
 

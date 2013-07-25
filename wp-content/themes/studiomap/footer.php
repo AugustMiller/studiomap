@@ -1,6 +1,8 @@
-		<footer>
-			Footer, just in case.
-		</footer>
+		<section class="end">
+			<footer>
+				Footer, just in case.
+			</footer>
+		</section>
 
 	</div>
 

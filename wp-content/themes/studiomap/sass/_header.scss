@@ -2,6 +2,28 @@
 	Header
 */
 
-header {
+.menu {
+	border-bottom: 1px solid $lightGrey;
 	
+	header {
+		// position: fixed;
+		// top: 0;
+		// left: 0;
+		// width: 100%;
+		background: white;
+		z-index: 1000;
+
+		.menu-content {
+			padding: 1.5em 0;
+
+			h1 {
+				float: left;
+			}
+
+			.filter-button {
+				float: right;
+				cursor: pointer;
+			}
+		}
+	}
 }

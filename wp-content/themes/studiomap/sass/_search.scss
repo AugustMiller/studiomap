@@ -1,0 +1,52 @@
+/*
+	Search Panel
+*/
+
+.search {
+	background: white;
+	@include animate();
+
+	form {
+		padding: 1.5em 0;
+	}
+
+	.field-group {
+		margin-bottom: 1em;
+		.field {
+			label {
+				&:hover {
+					input {
+						border-color: $darkGrey;
+					}
+					.count {
+						color: $darkGrey;
+					}
+				}
+				input:focus , input:checked {
+					border-color: $darkGrey;
+				}
+				input:checked {
+					background: $darkGrey;
+				}
+			}
+			.label-text {
+				.count {
+					vertical-align: middle;
+					margin-left: 0.5em;
+					letter-spacing: 3px;
+					font-size: 80%;
+					color: $midGrey;
+				}
+			}
+		}
+		.split {
+			.left , .right {
+				float: left;
+				width: 48%;
+			}
+			.left {
+				margin-right: 4%;
+			}
+		}
+	}
+}

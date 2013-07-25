@@ -1,0 +1,49 @@
+/*
+	Structure
+*/
+
+.wrapper {
+	padding: 0 2em;
+	// max-width: $maxPageWidth;
+}
+
+@for $column from 1 through $numColumns {
+	.col-#{$column} {
+		width: ( ( ( 100% ) / $numColumns ) * $column ) - $gutterWidth;
+	}
+
+	.push-#{$column} {
+		margin-left: ( ( 100% ) / $numColumns ) * $column;
+	}
+}
+
+.column {
+	// background: rgb(200,200,200);
+	padding: 0 ( $gutterWidth / 2 );
+	min-height: 1em;
+	float: left;
+	@media screen and ( max-width: 480px ) {
+		clear: both;
+		width: auto;
+		float: none;
+		text-align: left;
+		padding: 0;
+	}
+}
+
+.structure .column {
+	@include animate();
+	background: rgba(0,0,0,.1);
+}
+
+.column .column {
+	padding: 0;
+}
+
+.column.centered {
+	//	There can only be a single centered column per row.
+	margin: 0 auto;
+	float: none;
+	clear: both;
+
+}

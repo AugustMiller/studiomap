@@ -76,7 +76,7 @@
 	wp_enqueue_script( 'studio-post', get_bloginfo("template_directory") . '/js/studio-app.js', array( 'jquery' ) );
 
 	// Tie the app to the admin-ajax.php handler.
-	wp_localize_script( 'studio-post', 'Studios', array( 'endpoint' => admin_url( 'admin-ajax.php' ) ) );
+	// wp_localize_script( 'studio-post', 'StudioAPI', array( 'endpoint' => admin_url( 'admin-ajax.php' ) ) );
 
 	add_action( 'wp_ajax_nopriv_studio-post', 'studio_post' );
 	add_action( 'wp_ajax_studio-post', 'studio_post' );
@@ -97,7 +97,7 @@
 		$meta = array();
 
 		$tax = array(
-			"relation" => "OR"
+			"relation" => "AND"
 		);
 
 		/*
@@ -209,10 +209,14 @@
 				// Get set up:
 				$results->the_post();
 
-				$fields = get_fields( $post->ID );
+				// echo json_encode((array)$results); exit;
+
+				$fields = array_filter( get_fields( get_the_ID() ) );
 
 				$payload = array(
-					"wp" => (array)$post,
+					"wp" => null,
+					"permalink" => get_permalink(),
+					"id" => get_the_ID(),
 					"body" => $fields
 				);
 

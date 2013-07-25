@@ -1,0 +1,35 @@
+/*
+	Layout
+*/
+
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clearfix:after {
+	clear: both;
+	width: 100%;
+	content: '.';
+	text-indent: -9999em;
+	display: block;
+	visibility: hidden;
+	height: 0;
+	color: transparent;
+}
+
+.hide-overflow {
+	overflow: hidden;
+}
+
+@mixin hide {
+	display: none;
+}
+
+@mixin show {
+	display: block;
+}

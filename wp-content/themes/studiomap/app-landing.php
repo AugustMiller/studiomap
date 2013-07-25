@@ -19,72 +19,124 @@ get_header(); ?>
 			}
 		?>
 		
-		<div id="primary" class="map">
-			<div id="content" role="main">
-					
-				<h2>Hi! A Google Maps instance will go here, eventually.</h2>
+		<section class="search">
 
-				<form id="studio-query" method="POST">
+			<div class="wrapper">
+				<form id="studio-query" class="clearfix" method="POST">
 
-					<!-- Critical for server-side callback! -->
-					<input type="hidden" name="action" value="studio-post" id="studio-post-action" />
-
-					<div class="search">
-						<input type="text" placeholder="search term" id="search-term" name="search" />
+					<div class="column col-3 about">
+						Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas faucibus mollis interdum.
 					</div>
 
-					<div class="studio-size">
-						<input type="checkbox" name="include-studio-size" value="true" />
-						<input id="size-min" name="studio-size[min]" type="number" min="0" value="1" />
-						<input id="size-max" name="studio-size[max]" type="number" min="1" value="10" />
-					</div>
+					<div class="column col-3">
+						<!-- Critical for server-side callback! -->
+						<input type="hidden" name="action" value="studio-post" id="studio-post-action" />
 
-					<div class="specialties">
-						<?php
-							$specialties = get_terms( "specialties" , array(
-								"orderby" => "count",
-								"hide_empty" => 1
-							));
-							$i = 0;
-						?>
-						Specialties:
-						<?php foreach ( $specialties as $specialty ) { ?>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="<?php echo $specialty->term_id; ?>" name="specialties[<?php echo $i; ?>]" />
-								<?php echo $specialty->name; ?> (<?php echo $specialty->count; ?>)
-							</label>
+						<div class="field-group search-box">
+							<div class="field text">
+								<input type="text" placeholder="Search" id="search-term" name="search" />
+							</div>
 						</div>
-						<?php $i++; } ?>
-					</div>
 
-					<div class="categories">
-						<?php
-							$categories = get_terms( "category" , array(
-								"orderby" => "name",
-								"order" => "ASC",
-								"hide_empty" => 1,
-								"exclude" => array(1)
-							));
-							$i = 0;
-						?>
-						Categories:
-						<?php foreach ( $categories as $category ) { ?>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="<?php echo $category->term_id; ?>" name="categories[<?php echo $i; ?>]" />
-								<?php echo $category->name; ?> (<?php echo $category->count; ?>)
-							</label>
+						<div class="field-group studio-size">
+							<div class="field boolean">
+								<label>
+									<input type="checkbox" name="include-studio-size" value="true" />
+									Filter by number of employees?
+								</label>
+							</div>
+							<div class="split clearfix">
+								<div class="field number left">
+									<input id="size-min" name="studio-size[min]" type="number" min="0" max="9999" placeholder="Min" />
+								</div>
+								<div class="field number right">
+									<input id="size-max" name="studio-size[max]" type="number" min="1" placeholder="Max" />
+								</div>
+							</div>
 						</div>
-						<?php $i++; } ?>
+
+						<input class="button" type="submit" value="Update" id="search-submit" />
+
 					</div>
 
-					<input type="submit" value="submit it!" id="search-submit" />
+					<div class="column col-3">
+						<div class="field-group specialties">
+							<?php
+								$specialties = get_terms( "specialties" , array(
+									"orderby" => "count",
+									"hide_empty" => 1
+								));
+								$i = 0;
+							?>
+							<h3>
+								Specialties
+							</h3>
+							<?php foreach ( $specialties as $specialty ) { ?>
+							<div class="field boolean">
+								<label>
+									<input class="checkbox" type="checkbox" value="<?php echo $specialty->term_id; ?>" name="specialties[<?php echo $i; ?>]" />
+									<div class="label-text">
+										<?php echo $specialty->name; ?>
+										<span class="count">(<?php echo $specialty->count; ?>)</span>
+									</div>
+								</label>
+							</div>
+							<?php $i++; } ?>
+						</div>
+					</div>
+
+					<div class="column col-3">
+						<div class="field-group categories">
+							<?php
+								$categories = get_terms( "category" , array(
+									"orderby" => "name",
+									"order" => "ASC",
+									"hide_empty" => 1,
+									"exclude" => array(1)
+								));
+								$i = 0;
+							?>
+							<h3>
+								Groups
+							</h3>
+							<?php foreach ( $categories as $category ) { ?>
+							<div class="field boolean">
+								<label>
+									<input class="checkbox" type="checkbox" value="<?php echo $category->term_id; ?>" name="categories[<?php echo $i; ?>]" />
+									<div class="label-text">
+										<?php echo $category->name; ?>
+										<span class="count">(<?php echo $category->count; ?>)</span>
+									</div>
+								</label>
+							</div>
+							<?php $i++; } ?>
+						</div>
+
+					</div>
 
 				</form>
+			</div>
 
-			</div><!-- #content -->
+			<script>
+				// Similarly to wp_enqueue_script(), but more usable
+				var Locations,
+					API = {
+						"endpoint" : "<?php echo admin_url( 'admin-ajax.php' ); ?>"
+					};
 
-		</div><!-- #primary -->
+				$(document).ready( function ( ) {
+					Locations = new Studios( "<?php echo admin_url( 'admin-ajax.php' ); ?>" );
+				});
+
+			</script>
+
+
+		</section>
+
+		<section class="map">
+			<div class="studio-map-holder">
+				<div id="map-primary" class="map-primary"></div>
+			</div>
+		</section>
 
 <?php get_footer(); ?>
