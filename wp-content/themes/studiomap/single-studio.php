@@ -34,16 +34,19 @@
 					<?php for ( $t = 0; $t < count( $tags ); $t++ ) { ?>
 						<span class="tag" data-tag="<?php echo $tags[$t]->slug; ?>"><?php echo $tags[$t]->name; ?></span><?php echo ( ( $t === ( count( $tags ) - 1 ) ) ? "" : ", " ); ?>
 					<?php } ?>
+				</div>
 
 			</div>
 			<div class="body">
 				<?php echo get_field('description'); ?>
 			</div>
 		</div>
+
+		<div class="close">CLOSE THIS TILE</div>
 		
 		<?php edit_post_link('Edit this entry','','.'); ?>
 		
-		<pre><?php print_r( array_filter( get_fields( $post->ID ) ) ); ?></pre>
+		<pre><?php //print_r( array_filter( get_fields( $post->ID ) ) ); ?></pre>
 				
 	</div>
 

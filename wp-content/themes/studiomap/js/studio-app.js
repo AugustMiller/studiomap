@@ -14,8 +14,11 @@ function Studios ( endpoint , dir ) {
 	self.studios = [];
 	self.endpoint = endpoint;
 	self.directory = dir;
-	self.search = $('#studio-query');
-	self.inputs = self.search.find("input, select, button, textarea");
+	self.searchForm = $('#studio-query');
+	self.searchContainer = $('section.search');
+	self.searchOpen = false;
+	self.searchBtn = $('.filter-button');
+	self.inputs = self.searchForm.find("input, select, button, textarea");
 	self.mapContainer = $('.studio-map-holder');
 	self.map = document.getElementById('map-primary')
 	self.cardHolder = $('#rolodex');
@@ -29,7 +32,7 @@ Studios.prototype.init = function( ) {
 
 	self.createMap();
 
-	self.search.on('submit' , function ( e ) {
+	self.searchForm.on('submit' , function ( e ) {
 		e.preventDefault();
 		self.query();
 	});
@@ -38,23 +41,35 @@ Studios.prototype.init = function( ) {
 		self.resize();
 	});
 
+	self.searchBtn.on( 'click.Search' , function ( ) {
+		if ( self.searchOpen ) {
+			self.hide();
+		} else {
+			self.show();
+		}
+	});
+
+	self.hide();
 	self.resize();
 };
 
 Studios.prototype.show = function( ) {
 	var self = this;
 
+	self.searchContainer.slideDown();
+	self.searchOpen = true;
 };
 
 Studios.prototype.hide = function( ) {
 	var self = this;
 
-
+	self.searchContainer.slideUp();
+	self.searchOpen = false;
 };
 
 Studios.prototype.resize = function( ) {
 	var self = this,
-		mapHeight = ( window.innerHeight - $('.menu').outerHeight() - $('.search').outerHeight() );
+		mapHeight = ( window.innerHeight - $('.menu').outerHeight() );
 	self.mapContainer.height( mapHeight );
 };
 
@@ -164,7 +179,7 @@ Studios.prototype.createMap = function( ) {
 
 Studios.prototype.query = function( ) {
 	var self = this,
-		serialized = self.search.serialize();
+		serialized = self.searchForm.serialize();
 
 	console.log( serialized );
 
@@ -205,6 +220,7 @@ Studios.prototype.beforeQuery = function ( ) {
 
 Studios.prototype.afterQuery = function ( ) {
 	var self = this;
+	self.hide();
 	self.inputs.prop( 'disabled' , false );
 };
 
@@ -219,11 +235,21 @@ Studios.prototype.parse = function ( results ) {
 	}
 };
 
+Studios.prototype.tuck = function( ) {
+	var self = this;
+
+	for ( var s = 0; s < self.studios.length; s++ ) {
+		if ( self.studios[s].active ) {
+			self.studios[s].collapse();
+		}
+	}
+};
+
 Studios.prototype.clean = function ( ) {
 	var self = this;
 
 	for ( var s = 0; s < self.studios.length; ) {
-		if ( ! self.studios[s].active ) {
+		if ( ! self.studios[s].saved ) {
 			self.studios[s].destroy();
 			self.studios.splice( s , 1 );
 		} else {
@@ -249,6 +275,7 @@ function Studio ( data , parent ) {
 	self.url = data.permalink;
 	self.loc = self.latlng(data.body.location.coordinates);
 	self.active = false;
+	self.saved = false;
 
 	console.log( self );
 	self.init();
@@ -301,10 +328,38 @@ Studio.prototype.open = function( ) {
 	console.log("Opening.");
 
 	if ( self.loaded ) {
-		self.show();
+		console.log("Already loaded!");
+		if ( !self.active ) {
+			self.show();
+		} else {
+			self.collapse();
+		}
 	} else {
+		console.log("Needs load.");
 		self.load();
 	}
+};
+
+Studio.prototype.show = function ( ) {
+	var self = this;
+
+	self.card.slideDown();
+	self.expand();
+};
+
+Studio.prototype.expand = function( ) {
+	var self = this;
+
+	self.listings.tuck();
+
+	self.active = true;
+
+	self.card.animate({
+		'margin-bottom' : 0
+	},{
+		duration : 250
+	});
+
 };
 
 Studio.prototype.close = function( ) {
@@ -313,6 +368,24 @@ Studio.prototype.close = function( ) {
 	console.log("Closing.");
 
 	self.hide();
+};
+
+Studio.prototype.hide = function( ) {
+	var self = this;
+
+	self.card.fadeOut();
+};
+
+Studio.prototype.collapse = function ( ) {
+	var self = this;
+
+	self.card.animate({
+		'margin-bottom' : ( ( - self.card.height() ) + 25 ) + 'px'
+	},{
+		duration : 250
+	});
+
+	self.active = false;
 };
 
 Studio.prototype.load = function( ) {
@@ -329,26 +402,23 @@ Studio.prototype.load = function( ) {
 	})
 };
 
-Studio.prototype.hide = function ( ) {
-	var self = this;
-
-	self.card.slideUp();
-	self.active = false;
-};
-
-Studio.prototype.show = function ( ) {
-	var self = this;
-
-	self.card.slideDown();
-	self.active = true;
-};
-
 Studio.prototype.build = function ( html ) {
 	var self = this;
 
-	console.log(html);
+	console.log("Studio.load()");
+
 	$( html ).appendTo( self.listings.cardHolder );
+
 	self.card = $( '#studio-' + self.id );
+	self.card.on( 'click.Studio' , function ( ) {
+		self.open();
+	});
+
+	self.closeBtn = self.card.find('.close');
+	self.closeBtn.on( 'click.Studio' , function ( ) {
+		self.close();
+	});
+
 	self.loaded = true;
 	self.show();
 };
@@ -357,7 +427,6 @@ Studio.prototype.destroy = function ( ) {
 	var self = this;
 
 	if ( self.loaded ) {
-		self.close();
 		self.card.remove();
 		self.card = null;
 	}

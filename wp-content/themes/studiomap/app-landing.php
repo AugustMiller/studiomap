@@ -19,7 +19,7 @@ get_header(); ?>
 			}
 		?>
 		
-		<section class="search">
+		<section class="search" style="display:none;">
 
 			<div class="wrapper">
 				<form id="studio-query" class="clearfix" method="POST">
@@ -124,6 +124,7 @@ get_header(); ?>
 
 				$(document).ready( function ( ) {
 					Locations = new Studios( "<?php echo admin_url( 'admin-ajax.php' ); ?>" , "<?php bloginfo('stylesheet_directory'); ?>" );
+					Locations.query();
 				});
 
 			</script>
