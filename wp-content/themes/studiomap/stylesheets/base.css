@@ -533,11 +533,10 @@ h3 {
   bottom: 0;
   max-height: 300px;
   width: 100%;
-  overflow: scroll;
   background: white;
   z-index: 1000;
 }
-/* line 15, ../sass/_rolodex.scss */
+/* line 14, ../sass/_rolodex.scss */
 .cards .rolodex .card {
   background: white;
   overflow: hidden;
@@ -545,7 +544,7 @@ h3 {
   -moz-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.15);
 }
-/* line 20, ../sass/_rolodex.scss */
+/* line 19, ../sass/_rolodex.scss */
 .cards .rolodex .card .close {
   cursor: pointer;
 }

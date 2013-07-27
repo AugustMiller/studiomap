@@ -238,10 +238,15 @@ Studios.prototype.parse = function ( results ) {
 Studios.prototype.tuck = function( ) {
 	var self = this;
 
-	for ( var s = 0; s < self.studios.length; s++ ) {
+	for ( var s = 0; s < self.studios.length; ) {
 		if ( self.studios[s].active ) {
 			self.studios[s].collapse();
 		}
+
+		if ( self.studios[s].saved ) {
+			self.studios[s].card.css('z-index', ( 2000 - s ) );
+		}
+		s++;
 	}
 };
 
@@ -338,6 +343,8 @@ Studio.prototype.open = function( ) {
 		console.log("Needs load.");
 		self.load();
 	}
+
+	self.saved = true;
 };
 
 Studio.prototype.show = function ( ) {
@@ -367,7 +374,11 @@ Studio.prototype.close = function( ) {
 
 	console.log("Closing.");
 
-	self.hide();
+	self.card.slideUp().remove();
+	self.card = null;
+	self.loaded = false;
+	self.active = false;
+	self.saved = false;
 };
 
 Studio.prototype.hide = function( ) {
@@ -427,8 +438,7 @@ Studio.prototype.destroy = function ( ) {
 	var self = this;
 
 	if ( self.loaded ) {
-		self.card.remove();
-		self.card = null;
+		self.close();
 	}
 	
 	self.marker.setMap( null );
