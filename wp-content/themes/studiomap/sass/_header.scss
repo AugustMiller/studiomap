@@ -20,6 +20,11 @@
 				float: left;
 			}
 
+			a {
+				color: $darkGrey;
+				border: none;
+			}
+
 			.filter-button {
 				float: right;
 				cursor: pointer;

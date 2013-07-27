@@ -8,15 +8,17 @@
 	Studio Cachine and Card Display Class
 */
 
-function Studios ( endpoint ) {
+function Studios ( endpoint , dir ) {
 	var self = this;
 
 	self.studios = [];
 	self.endpoint = endpoint;
+	self.directory = dir;
 	self.search = $('#studio-query');
 	self.inputs = self.search.find("input, select, button, textarea");
 	self.mapContainer = $('.studio-map-holder');
 	self.map = document.getElementById('map-primary')
+	self.cardHolder = $('#rolodex');
 	self.xhr;
 
 	self.init();
@@ -37,6 +39,17 @@ Studios.prototype.init = function( ) {
 	});
 
 	self.resize();
+};
+
+Studios.prototype.show = function( ) {
+	var self = this;
+
+};
+
+Studios.prototype.hide = function( ) {
+	var self = this;
+
+
 };
 
 Studios.prototype.resize = function( ) {
@@ -201,7 +214,7 @@ Studios.prototype.parse = function ( results ) {
 	for ( var s = 0; s < results.length; s++ ) {
 		var studio = results[s];
 		if ( ! self.exists( studio.id ) ) {
-			self.studios.push( new Studio( studio ) );
+			self.studios.push( new Studio( studio , this ) );
 		}
 	}
 };
@@ -227,13 +240,15 @@ Studios.prototype.exists = function ( id ) {
 	}
 };
 
-function Studio ( data ) {
+function Studio ( data , parent ) {
 	var self = this;
 
 	self.id = data.id;
+	self.listings = parent;
 	self.title = data.body.studio_name;
 	self.url = data.permalink;
 	self.loc = self.latlng(data.body.location.coordinates);
+	self.active = false;
 
 	console.log( self );
 	self.init();
@@ -255,11 +270,20 @@ Studio.prototype.latlng = function( coords ) {
 
 Studio.prototype.pin = function( ) {
 	var self = this,
+		pinImage = {
+			url: self.listings.directory + '/images/map-pin.svg',
+			size: new google.maps.Size( 35 , 35 ),
+			// The origin for this image is 0,0.
+			origin: new google.maps.Point( 0 , 0 ),
+			// The anchor for this image is the base of the flagpole at 0,32.
+			anchor: new google.maps.Point( 30 , 11 )
+		},
 		pin = new google.maps.Marker({
 			position: self.loc,
 			map: map,
 			title: self.title,
-			animation: google.maps.Animation.DROP
+			animation: google.maps.Animation.DROP,
+			icon: pinImage
 		});
 
 	// So, we can register clicks on each header.
@@ -275,20 +299,71 @@ Studio.prototype.open = function( ) {
 	var self = this;
 
 	console.log("Opening.");
-	self.active = true;
+
+	if ( self.loaded ) {
+		self.show();
+	} else {
+		self.load();
+	}
 };
 
 Studio.prototype.close = function( ) {
-	var self = true;
+	var self = this;
 
 	console.log("Closing.");
+
+	self.hide();
+};
+
+Studio.prototype.load = function( ) {
+	var self = this;
+	$.ajax({
+		url : self.url,
+		method : "GET",
+		success : function ( data ) {
+			self.build( data );
+		},
+		failure : function ( data ) {
+			self.close();
+		}
+	})
+};
+
+Studio.prototype.hide = function ( ) {
+	var self = this;
+
+	self.card.slideUp();
 	self.active = false;
 };
 
-Studio.prototype.destroy = function( ) {
+Studio.prototype.show = function ( ) {
 	var self = this;
 
-	self.marker.setMap(null);
+	self.card.slideDown();
+	self.active = true;
+};
+
+Studio.prototype.build = function ( html ) {
+	var self = this;
+
+	console.log(html);
+	$( html ).appendTo( self.listings.cardHolder );
+	self.card = $( '#studio-' + self.id );
+	self.loaded = true;
+	self.show();
+};
+
+Studio.prototype.destroy = function ( ) {
+	var self = this;
+
+	if ( self.loaded ) {
+		self.close();
+		self.card.remove();
+		self.card = null;
+	}
+	
+	self.marker.setMap( null );
+	self.loaded = false;
 
 	console.log("Destroying");
 };

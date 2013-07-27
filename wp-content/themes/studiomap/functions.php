@@ -37,11 +37,24 @@
 			'show_in_menu' => true, 
 			'query_var' => true,
 			'rewrite' => array( 'slug' => 'studios' ),
-			'capability_type' => 'post',
-			'has_archive' => true, 
+			// 'capability_type' => 'editor',
+			/*
+			'capabilities' => array(
+				'publish_posts' => 'publish_studio',
+				'edit_posts' => 'edit_studio',
+				'edit_others_posts' => 'edit_others_studio',
+				'delete_posts' => 'delete_studio',
+				'delete_others_posts' => 'delete_others_studio',
+				'read_private_posts' => 'read_private_studio',
+				'edit_post' => 'edit_studio',
+				'delete_post' => 'delete_studio',
+				'read_post' => 'read_studio'
+			),
+			*/
+			'has_archive' => true,
 			'hierarchical' => false,
 			'menu_position' => 20,
-			'menu_icon' => "",	
+			'menu_icon' => "",
 			'supports' => array(),
 			'taxonomies' => array('category','specialties')
 		);
@@ -50,6 +63,24 @@
 	}
 
 	add_action( 'init', 'studio_type_init' );
+
+	/*
+	function add_studio_role ( ) {
+		add_role('studio_author', 'Studio Manager', array(
+			'publish_studio' => true,
+			'edit_studio' => true,
+			'edit_others_studio' => true,
+			'delete_studio' => true,
+			'delete_others_studio' => true,
+			'read_private_studio' => true,
+			'edit_studio' => true,
+			'delete_studio' => true,
+			'read_studio' => true
+		));		
+	}
+
+	add_action( 'init', 'add_studio_role' );
+	*/
 
 	/*
 		Taxonomy for Studios
@@ -66,6 +97,7 @@
 			)
 		);
 	}
+
 	add_action( 'init', 'specialties_init' );
 
 
@@ -90,11 +122,14 @@
 		// echo json_encode($_POST); exit;
 
 		$params = $_POST;
+
 		$response = array(
 			"studios" => array()
 		);
 
-		$meta = array();
+		$meta = array(
+			"relation" => "OR"
+		);
 
 		$tax = array(
 			"relation" => "AND"
@@ -113,9 +148,20 @@
 			array_push( $meta , array(
 				// Studio Name Key
 				"key" => "studio_name",
-				"value" => $search_name,
+				"value" => "$search_name",
 				"compare" => "LIKE"
 			));
+
+			foreach ( explode( ' ' , $search_name ) as $term ) {
+				array_push( $meta , array(
+					// Description Key
+					"key" => "description",
+					"value" => "$term",
+					"compare" => "LIKE"
+				));
+			}
+
+
 		}
 
 
@@ -158,7 +204,7 @@
 
 		if ( $params["categories"] ) {
 			$categories = $params["categories"];
-			array_map( "makeIntegers" , $categories );
+			array_map( "makeInteger" , $categories );
 			
 			// echo json_encode($specialties); exit;
 
@@ -238,7 +284,7 @@
 		exit;
 	}
 
-	function makeIntegers ( $string ) {
+	function makeInteger ( $string ) {
 		return intval( $string );
 	}
 

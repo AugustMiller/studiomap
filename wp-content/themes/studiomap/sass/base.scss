@@ -5,20 +5,24 @@
 	On behalf of Portland State University Graphic Design Students
 */
 
+//	Typical Libraries
 @import "compass/css3";
 @import "compass/css3/transition";
 @import "compass/reset";
 
+
+//	Supporting Roles
 @import "variables";
 @import "global";
 @import "input";
 @import "typography";
 @import "structure";
 @import "layout";
-@import "maps";
 
+
+//	Section Specific
 @import "header";
-
 @import "search";
-
+@import "rolodex";
+@import "maps";
 @import "footer";

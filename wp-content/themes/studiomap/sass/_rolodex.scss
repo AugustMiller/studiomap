@@ -1,0 +1,19 @@
+/*
+	Rolodex
+*/
+
+
+.cards {
+	position: fixed;
+	bottom: 0;
+	max-height: 300px;
+	width: 100%;
+	overflow: scroll;
+	background: white;
+	z-index: 1000;
+	.rolodex {
+		.card {
+			display: none;
+		}
+	}
+}

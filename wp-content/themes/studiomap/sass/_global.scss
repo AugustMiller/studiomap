@@ -26,12 +26,20 @@ body {
 a {
 	text-decoration: none;
 	outline: none;
+	@include animate();
+	
 	&:link {
 		color: $darkGrey;
+		border-bottom: 1px solid transparent;
 	}
 
 	&:visited {
 		color: $darkGrey;
+	}
+
+	&:hover {
+		color: $darkGrey;
+		border-bottom: 1px solid $darkGrey;
 	}
 
 	&:active {

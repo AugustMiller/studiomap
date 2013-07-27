@@ -24,10 +24,6 @@ get_header(); ?>
 			<div class="wrapper">
 				<form id="studio-query" class="clearfix" method="POST">
 
-					<div class="column col-3 about">
-						Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas faucibus mollis interdum.
-					</div>
-
 					<div class="column col-3">
 						<!-- Critical for server-side callback! -->
 						<input type="hidden" name="action" value="studio-post" id="studio-post-action" />
@@ -54,8 +50,6 @@ get_header(); ?>
 								</div>
 							</div>
 						</div>
-
-						<input class="button" type="submit" value="Update" id="search-submit" />
 
 					</div>
 
@@ -114,6 +108,10 @@ get_header(); ?>
 
 					</div>
 
+					<div class="column col-3">
+						<input class="button" type="submit" value="Update" id="search-submit" />
+					</div>
+
 				</form>
 			</div>
 
@@ -125,12 +123,16 @@ get_header(); ?>
 					};
 
 				$(document).ready( function ( ) {
-					Locations = new Studios( "<?php echo admin_url( 'admin-ajax.php' ); ?>" );
+					Locations = new Studios( "<?php echo admin_url( 'admin-ajax.php' ); ?>" , "<?php bloginfo('stylesheet_directory'); ?>" );
 				});
 
 			</script>
 
 
+		</section>
+
+		<section class="cards">
+			<div id="rolodex" class="rolodex"></div>
 		</section>
 
 		<section class="map">
