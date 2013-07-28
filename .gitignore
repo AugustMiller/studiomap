@@ -1,4 +1,9 @@
 wp-config.php
+
 wp-config-prod.php
+
 .DS_Store
-.sass-cache/
+
+.sass-cache/*
+
+*.scssc
