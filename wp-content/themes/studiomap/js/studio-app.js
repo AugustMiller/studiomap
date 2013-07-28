@@ -200,8 +200,9 @@ Studios.prototype.query = function( ) {
 		self.parse( response.studios );
 	});
 
-	self.xhr.always( function ( ) {
+	self.xhr.always( function ( data ) {
 		console.log("Always");
+		console.log(data);
 		self.afterQuery();
 	});
 
@@ -252,7 +253,7 @@ Studios.prototype.tuck = function( ) {
 	}
 
 	// Keep the stacking right.
-	
+
 	$("#rolodex .card").each( function ( index ) {
 		$(this).css('z-index', ( 2000 + ( index * 10 ) ) )
 	});

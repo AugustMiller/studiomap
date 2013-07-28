@@ -190,7 +190,7 @@
 
 		if ( $params["specialties"] ) {
 			$specialties = $params["specialties"];
-			array_map( "makeIntegers" , $specialties );
+			array_map( "makeInteger" , $specialties );
 
 			// echo json_encode($specialties); exit;
 
