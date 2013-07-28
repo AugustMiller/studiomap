@@ -243,11 +243,19 @@ Studios.prototype.tuck = function( ) {
 			self.studios[s].collapse();
 		}
 
+
 		if ( self.studios[s].saved ) {
-			self.studios[s].card.css('z-index', ( 2000 - s ) );
+			//self.studios[s].card.css('z-index', ( 2000 - s ) );
 		}
+
 		s++;
 	}
+
+	// Keep the stacking right.
+	
+	$("#rolodex .card").each( function ( index ) {
+		$(this).css('z-index', ( 2000 + ( index * 10 ) ) )
+	});
 };
 
 Studios.prototype.clean = function ( ) {
@@ -278,7 +286,7 @@ function Studio ( data , parent ) {
 	self.listings = parent;
 	self.title = data.body.studio_name;
 	self.url = data.permalink;
-	self.loc = self.latlng(data.body.location.coordinates);
+	self.loc = self.latlng( ( data.body.location.coordinates || "0,0" ) );
 	self.active = false;
 	self.saved = false;
 
@@ -294,7 +302,7 @@ Studio.prototype.init = function( ) {
 
 Studio.prototype.latlng = function( coords ) {
 	var self = this,
-		split = coords.split(','),
+		split = ( coords ? coords.split(',') : [0,0] ),
 		location = new google.maps.LatLng( parseFloat( split[0] ) , parseFloat( split[1] ) );
 
 	return location;

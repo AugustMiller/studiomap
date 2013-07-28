@@ -4,7 +4,7 @@
 	2013
 	On behalf of Portland State University Graphic Design Students
 */
-/* line 17, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, /Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -26,45 +26,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, /Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, /Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, /Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, /Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, /Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, /Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, /Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, /Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -75,17 +75,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /*
 	Global
 */
-/* line 5, ../sass/_global.scss */
+/* line 5, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_global.scss */
 * {
   outline: none;
 }
 
-/* line 9, ../sass/_global.scss */
+/* line 9, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_global.scss */
 html {
   position: relative;
 }
 
-/* line 13, ../sass/_global.scss */
+/* line 13, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_global.scss */
 body {
   position: relative;
   font-family: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
@@ -94,7 +94,7 @@ body {
   line-height: 155%;
 }
 
-/* line 26, ../sass/_global.scss */
+/* line 26, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_global.scss */
 a {
   text-decoration: none;
   outline: none;
@@ -111,21 +111,21 @@ a {
   -o-transition-timing-function: cubic-bezier(0, 1, 0.75, 1);
   transition-timing-function: cubic-bezier(0, 1, 0.75, 1);
 }
-/* line 31, ../sass/_global.scss */
+/* line 31, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_global.scss */
 a:link {
   color: #323232;
   border-bottom: 1px solid transparent;
 }
-/* line 36, ../sass/_global.scss */
+/* line 36, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_global.scss */
 a:visited {
   color: #323232;
 }
-/* line 40, ../sass/_global.scss */
+/* line 40, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_global.scss */
 a:hover {
   color: #323232;
   border-bottom: 1px solid #323232;
 }
-/* line 45, ../sass/_global.scss */
+/* line 45, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_global.scss */
 a:active {
   color: #1e1e1e;
 }
@@ -133,7 +133,7 @@ a:active {
 /*
 	Input
 */
-/* line 5, ../sass/_input.scss */
+/* line 5, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_input.scss */
 input, textarea {
   background: #f8f8f8;
   display: block;
@@ -166,24 +166,24 @@ input, textarea {
   -o-transition-timing-function: cubic-bezier(0, 1, 0.75, 1);
   transition-timing-function: cubic-bezier(0, 1, 0.75, 1);
 }
-/* line 19, ../sass/_input.scss */
+/* line 19, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_input.scss */
 input:focus, input:hover, textarea:focus, textarea:hover {
   background: white;
 }
-/* line 24, ../sass/_input.scss */
+/* line 24, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_input.scss */
 input:disabled, textarea:disabled {
   opacity: 0.75;
 }
 
-/* line 29, ../sass/_input.scss */
+/* line 29, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_input.scss */
 .field {
   position: relative;
 }
-/* line 32, ../sass/_input.scss */
+/* line 32, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_input.scss */
 .field.boolean {
   padding-left: 1.5em;
 }
-/* line 35, ../sass/_input.scss */
+/* line 35, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_input.scss */
 .field.boolean input {
   padding: 0;
   position: absolute;
@@ -199,7 +199,7 @@ input:disabled, textarea:disabled {
   border-radius: 100%;
 }
 
-/* line 49, ../sass/_input.scss */
+/* line 49, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_input.scss */
 label {
   font: inherit;
   font-family: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
@@ -208,7 +208,7 @@ label {
   color: #323232;
 }
 
-/* line 57, ../sass/_input.scss */
+/* line 57, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_input.scss */
 .button {
   display: inline-block;
   padding-left: 1em;
@@ -219,7 +219,7 @@ label {
 /*
 	Typography
 */
-/* line 5, ../sass/_typography.scss */
+/* line 5, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_typography.scss */
 h1, h2, h3, h4, h5, h6 {
   font-family: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
   font-weight: bold;
@@ -227,7 +227,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.1em;
 }
 
-/* line 12, ../sass/_typography.scss */
+/* line 12, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_typography.scss */
 h3 {
   font-size: 85%;
   margin-bottom: 1em;
@@ -236,139 +236,139 @@ h3 {
 /*
 	Structure
 */
-/* line 5, ../sass/_structure.scss */
+/* line 5, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .wrapper {
   padding: 0 2em;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-1 {
   width: 5.33333%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-1 {
   margin-left: 8.33333%;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-2 {
   width: 13.66667%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-2 {
   margin-left: 16.66667%;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-3 {
   width: 22%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-3 {
   margin-left: 25%;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-4 {
   width: 30.33333%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-4 {
   margin-left: 33.33333%;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-5 {
   width: 38.66667%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-5 {
   margin-left: 41.66667%;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-6 {
   width: 47%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-6 {
   margin-left: 50%;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-7 {
   width: 55.33333%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-7 {
   margin-left: 58.33333%;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-8 {
   width: 63.66667%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-8 {
   margin-left: 66.66667%;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-9 {
   width: 72%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-9 {
   margin-left: 75%;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-10 {
   width: 80.33333%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-10 {
   margin-left: 83.33333%;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-11 {
   width: 88.66667%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-11 {
   margin-left: 91.66667%;
 }
 
-/* line 11, ../sass/_structure.scss */
+/* line 11, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .col-12 {
   width: 97%;
 }
 
-/* line 15, ../sass/_structure.scss */
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .push-12 {
   margin-left: 100%;
 }
 
-/* line 20, ../sass/_structure.scss */
+/* line 20, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .column {
   padding: 0 1.5%;
   min-height: 1em;
   float: left;
 }
 @media screen and (max-width: 480px) {
-  /* line 20, ../sass/_structure.scss */
+  /* line 20, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
   .column {
     clear: both;
     width: auto;
@@ -378,7 +378,7 @@ h3 {
   }
 }
 
-/* line 34, ../sass/_structure.scss */
+/* line 34, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .structure .column {
   -webkit-transition-duration: 0.35s;
   -moz-transition-duration: 0.35s;
@@ -395,12 +395,12 @@ h3 {
   background: rgba(0, 0, 0, 0.1);
 }
 
-/* line 39, ../sass/_structure.scss */
+/* line 39, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .column .column {
   padding: 0;
 }
 
-/* line 43, ../sass/_structure.scss */
+/* line 43, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_structure.scss */
 .column.centered {
   margin: 0 auto;
   float: none;
@@ -410,17 +410,17 @@ h3 {
 /*
 	Layout
 */
-/* line 6, ../sass/_layout.scss */
+/* line 6, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_layout.scss */
 .left {
   float: left;
 }
 
-/* line 10, ../sass/_layout.scss */
+/* line 10, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_layout.scss */
 .right {
   float: right;
 }
 
-/* line 14, ../sass/_layout.scss */
+/* line 14, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_layout.scss */
 .clearfix:after {
   clear: both;
   width: 100%;
@@ -432,7 +432,7 @@ h3 {
   color: transparent;
 }
 
-/* line 25, ../sass/_layout.scss */
+/* line 25, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_layout.scss */
 .hide-overflow {
   overflow: hidden;
 }
@@ -440,30 +440,31 @@ h3 {
 /*
 	Header
 */
-/* line 5, ../sass/_header.scss */
-.menu {
+/* line 5, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_header.scss */
+section.menu {
   border-bottom: 1px solid #f8f8f8;
-}
-/* line 8, ../sass/_header.scss */
-.menu header {
-  background: white;
+  position: relative;
   z-index: 1010;
 }
-/* line 16, ../sass/_header.scss */
-.menu header .menu-content {
+/* line 9, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_header.scss */
+section.menu header {
+  background: white;
+}
+/* line 12, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_header.scss */
+section.menu header .menu-content {
   padding: 1.5em 0;
 }
-/* line 19, ../sass/_header.scss */
-.menu header .menu-content h1 {
+/* line 15, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_header.scss */
+section.menu header .menu-content h1 {
   float: left;
 }
-/* line 23, ../sass/_header.scss */
-.menu header .menu-content a {
+/* line 19, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_header.scss */
+section.menu header .menu-content a {
   color: #323232;
   border: none;
 }
-/* line 28, ../sass/_header.scss */
-.menu header .menu-content .filter-button {
+/* line 24, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_header.scss */
+section.menu header .menu-content .filter-button {
   float: right;
   cursor: pointer;
 }
@@ -471,8 +472,8 @@ h3 {
 /*
 	Search Panel
 */
-/* line 5, ../sass/_search.scss */
-.search {
+/* line 5, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_search.scss */
+section.search {
   background: white;
   display: none;
   position: absolute;
@@ -482,53 +483,53 @@ h3 {
   -moz-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
 }
-/* line 13, ../sass/_search.scss */
-.search form {
+/* line 13, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_search.scss */
+section.search form {
   padding: 1.5em 0;
 }
-/* line 17, ../sass/_search.scss */
-.search .field-group {
+/* line 17, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_search.scss */
+section.search .field-group {
   margin-bottom: 1em;
 }
-/* line 22, ../sass/_search.scss */
-.search .field-group .field label:hover input {
+/* line 22, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_search.scss */
+section.search .field-group .field label:hover input {
   border-color: #323232;
 }
-/* line 25, ../sass/_search.scss */
-.search .field-group .field label:hover .count {
+/* line 25, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_search.scss */
+section.search .field-group .field label:hover .count {
   color: #323232;
 }
-/* line 29, ../sass/_search.scss */
-.search .field-group .field label input:focus, .search .field-group .field label input:checked {
+/* line 29, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_search.scss */
+section.search .field-group .field label input:focus, section.search .field-group .field label input:checked {
   border-color: #323232;
 }
-/* line 32, ../sass/_search.scss */
-.search .field-group .field label input:checked {
+/* line 32, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_search.scss */
+section.search .field-group .field label input:checked {
   background: #323232;
 }
-/* line 37, ../sass/_search.scss */
-.search .field-group .field .label-text .count {
+/* line 37, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_search.scss */
+section.search .field-group .field .label-text .count {
   vertical-align: middle;
   margin-left: 0.5em;
   letter-spacing: 3px;
   font-size: 80%;
   color: #b4b4b4;
 }
-/* line 47, ../sass/_search.scss */
-.search .field-group .split .left, .search .field-group .split .right {
+/* line 47, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_search.scss */
+section.search .field-group .split .left, section.search .field-group .split .right {
   float: left;
   width: 48%;
 }
-/* line 51, ../sass/_search.scss */
-.search .field-group .split .left {
+/* line 51, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_search.scss */
+section.search .field-group .split .left {
   margin-right: 4%;
 }
 
 /*
 	Rolodex
 */
-/* line 6, ../sass/_rolodex.scss */
-.cards {
+/* line 6, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_rolodex.scss */
+section.cards {
   position: fixed;
   bottom: 0;
   max-height: 300px;
@@ -536,24 +537,25 @@ h3 {
   background: white;
   z-index: 1000;
 }
-/* line 14, ../sass/_rolodex.scss */
-.cards .rolodex .card {
+/* line 14, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_rolodex.scss */
+section.cards .rolodex .card {
   background: white;
   overflow: hidden;
+  position: relative;
   -webkit-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.15);
 }
-/* line 19, ../sass/_rolodex.scss */
-.cards .rolodex .card .close {
+/* line 20, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_rolodex.scss */
+section.cards .rolodex .card .close {
   cursor: pointer;
 }
 
 /*
 	Map
 */
-/* line 6, ../sass/_maps.scss */
-.studio-map-holder .map-primary {
+/* line 8, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_maps.scss */
+section.map .studio-map-holder .map-primary {
   height: 100%;
   width: 100%;
 }
@@ -561,7 +563,7 @@ h3 {
 /*
 	Footer
 */
-/* line 5, ../sass/_footer.scss */
+/* line 5, /Applications/MAMP/htdocs/studiomap/wp-content/themes/studiomap/sass/_footer.scss */
 footer {
   display: none;
 }

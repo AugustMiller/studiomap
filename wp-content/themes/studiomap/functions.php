@@ -224,6 +224,8 @@
 
 		$query = array(
 			"post_type" => "studio",
+			"post_status" => "publish",
+			"posts_per_page" => -1,
 			"meta_query" => $meta,
 			"tax_query" => $tax
 		);

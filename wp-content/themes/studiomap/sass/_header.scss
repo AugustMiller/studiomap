@@ -2,16 +2,12 @@
 	Header
 */
 
-.menu {
+section.menu {
 	border-bottom: 1px solid $lightGrey;
-	
+	position: relative;
+	z-index: 1010;
 	header {
-		// position: fixed;
-		// top: 0;
-		// left: 0;
-		// width: 100%;
 		background: white;
-		z-index: 1010;
 
 		.menu-content {
 			padding: 1.5em 0;
