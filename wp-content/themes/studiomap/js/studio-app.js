@@ -49,21 +49,30 @@ Studios.prototype.init = function( ) {
 		}
 	});
 
-	self.hide();
 	self.resize();
 };
 
 Studios.prototype.show = function( ) {
 	var self = this;
 
-	self.searchContainer.slideDown();
+	self.searchContainer.animate({
+		'right' : 0
+	},{
+		duration : 250
+	});
+
 	self.searchOpen = true;
 };
 
 Studios.prototype.hide = function( ) {
 	var self = this;
 
-	self.searchContainer.slideUp();
+	self.searchContainer.animate({
+		'right' : "-350px"
+	},{
+		duration : 250
+	});
+
 	self.searchOpen = false;
 };
 
@@ -337,8 +346,7 @@ Studio.prototype.pin = function( ) {
 			size: new google.maps.Size( 35 , 35 ),
 			// The origin for this image is 0,0.
 			origin: new google.maps.Point( 0 , 0 ),
-			// The anchor for this image is the base of the flagpole at 0,32.
-			anchor: new google.maps.Point( 30 , 11 )
+			anchor: new google.maps.Point( 15 , 30 )
 		},
 		pin = new google.maps.Marker({
 			position: self.loc,
@@ -435,7 +443,7 @@ Studio.prototype.collapse = function ( ) {
 	var self = this;
 
 	self.card.animate({
-		'margin-left' : ( ( - self.card.outerWidth() ) + 32 ) + 'px'
+		'margin-left' : ( ( - self.card.outerWidth() ) + 15 ) + 'px'
 	},{
 		duration : 250,
 		specialEasing : "easeOutBounce"

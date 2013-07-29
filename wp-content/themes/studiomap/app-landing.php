@@ -19,12 +19,12 @@ get_header(); ?>
 			}
 		?>
 		
-		<section class="search" style="display:none;">
+		<section class="search">
 
 			<div class="wrapper">
 				<form id="studio-query" class="clearfix" method="POST">
 
-					<div class="column col-3">
+					<div>
 						<!-- Critical for server-side callback! -->
 						<input type="hidden" name="action" value="studio-post" id="studio-post-action" />
 
@@ -53,12 +53,13 @@ get_header(); ?>
 
 					</div>
 
-					<div class="column col-3">
+					<div>
 						<div class="field-group specialties">
 							<?php
 								$specialties = get_terms( "specialties" , array(
 									"orderby" => "count",
-									"hide_empty" => 1
+									"order" => "DESC",
+									"hide_empty" => 1,
 								));
 								$i = 0;
 							?>
@@ -81,7 +82,7 @@ get_header(); ?>
 						</div>
 					</div>
 
-					<div class="column col-3">
+					<div>
 						<div class="field-group categories">
 							<?php
 								$categories = get_terms( "category" , array(
@@ -112,7 +113,7 @@ get_header(); ?>
 
 					</div>
 
-					<div class="column col-3">
+					<div>
 						<input class="button" type="submit" value="Update" id="search-submit" />
 					</div>
 
@@ -127,7 +128,7 @@ get_header(); ?>
 					};
 
 				$(document).ready( function ( ) {
-					$('section.cards').css( 'top' , $('section.menu').height() );
+					$('section.cards,section.search').css( 'top' , $('section.menu').height() );
 					Locations = new Studios( "<?php echo admin_url( 'admin-ajax.php' ); ?>" , "<?php bloginfo('stylesheet_directory'); ?>" );
 					Locations.query();
 				});

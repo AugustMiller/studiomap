@@ -475,39 +475,41 @@ section.menu header .menu-content .filter-button {
 /* line 5, ../sass/_search.scss */
 section.search {
   background: white;
-  display: none;
-  position: absolute;
+  position: fixed;
+  overflow: scroll;
+  right: 0;
+  bottom: 0;
+  width: 350px;
   z-index: 1000;
-  width: 100%;
   -webkit-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
 }
-/* line 13, ../sass/_search.scss */
+/* line 15, ../sass/_search.scss */
 section.search form {
   padding: 1.5em 0;
 }
-/* line 17, ../sass/_search.scss */
+/* line 19, ../sass/_search.scss */
 section.search .field-group {
   margin-bottom: 1em;
 }
-/* line 22, ../sass/_search.scss */
+/* line 24, ../sass/_search.scss */
 section.search .field-group .field label:hover input {
   border-color: #323232;
 }
-/* line 25, ../sass/_search.scss */
+/* line 27, ../sass/_search.scss */
 section.search .field-group .field label:hover .count {
   color: #323232;
 }
-/* line 29, ../sass/_search.scss */
+/* line 31, ../sass/_search.scss */
 section.search .field-group .field label input:focus, section.search .field-group .field label input:checked {
   border-color: #323232;
 }
-/* line 32, ../sass/_search.scss */
+/* line 34, ../sass/_search.scss */
 section.search .field-group .field label input:checked {
   background: #323232;
 }
-/* line 37, ../sass/_search.scss */
+/* line 39, ../sass/_search.scss */
 section.search .field-group .field .label-text .count {
   vertical-align: middle;
   margin-left: 0.5em;
@@ -515,16 +517,16 @@ section.search .field-group .field .label-text .count {
   font-size: 80%;
   color: #b4b4b4;
 }
-/* line 47, ../sass/_search.scss */
+/* line 49, ../sass/_search.scss */
 section.search .field-group .split .left, section.search .field-group .split .right {
   float: left;
   width: 48%;
 }
-/* line 51, ../sass/_search.scss */
+/* line 53, ../sass/_search.scss */
 section.search .field-group .split .left {
   margin-right: 4%;
 }
-/* line 59, ../sass/_search.scss */
+/* line 61, ../sass/_search.scss */
 section.search .tag-list .tag label {
   text-transform: sentence-case;
 }
@@ -679,6 +681,10 @@ section.cards .rolodex .card .principals .principal .role {
 /* line 144, ../sass/_rolodex.scss */
 section.cards .rolodex .card .tags span {
   color: #b4b4b4;
+}
+/* line 149, ../sass/_rolodex.scss */
+section.cards .rolodex .card .body {
+  overflow: hidden;
 }
 
 /*

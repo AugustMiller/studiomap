@@ -4,10 +4,12 @@
 
 section.search {
 	background: white;
-	display: none;
-	position: absolute;
+	position: fixed;
+	overflow: scroll;
+	right: 0;
+	bottom: 0;
+	width: 350px;
 	z-index: 1000;
-	width: 100%;
 	@include box-shadow( 0 0 0.5em rgba( 0 , 0 , 0 , 0.25 ) );
 
 	form {

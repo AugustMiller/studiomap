@@ -87,11 +87,12 @@
 					<span class="label">Minimize</span>
 				</div>
 			</div>
+			
+			<?php edit_post_link('Edit this entry','','.'); ?>
 
 		</div>
 
 		
-		<?php edit_post_link('Edit this entry','','.'); ?>
 		
 		<pre><?php //print_r( array_filter( get_fields( $post->ID ) ) ); ?></pre>
 				
