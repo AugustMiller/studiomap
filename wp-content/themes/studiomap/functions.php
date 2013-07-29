@@ -115,6 +115,8 @@
 
 	function studio_post ( ) {
 
+		$exec = microtime( true );
+
 		//	Override whatever headers WordPress has set.
 		header('Content-Type: application/json');
 
@@ -248,7 +250,8 @@
 			"found" => (int)($results->found_posts),
 			"hash" => $results->query_vars_hash,
 			"query" => $results->query,
-			"server" => $_POST
+			"server" => $_POST,
+			"time" => ( microtime( true ) - $exec )
 		);
 
 		if ( $results->have_posts() ) {

@@ -174,7 +174,7 @@ Studios.prototype.createMap = function( ) {
 
 	self.mapContainer.css('height',window.innerHeight);
 
-	map = new google.maps.Map( self.map , mapOptions );
+	self.gmap = new google.maps.Map( self.map , mapOptions );
 };
 
 Studios.prototype.query = function( ) {
@@ -208,7 +208,6 @@ Studios.prototype.query = function( ) {
 
 	self.xhr.fail( function ( ) {
 		console.log("Fail");
-		self.afterQuery();
 	});
 
 };
@@ -246,7 +245,8 @@ Studios.prototype.tuck = function( ) {
 
 
 		if ( self.studios[s].saved ) {
-			//self.studios[s].card.css('z-index', ( 2000 - s ) );
+			// This doesn't work.
+			// self.studios[s].card.css( 'z-index' , ( 2000 - s ) );
 		}
 
 		s++;
@@ -255,7 +255,7 @@ Studios.prototype.tuck = function( ) {
 	// Keep the stacking right.
 
 	$("#rolodex .card").each( function ( index ) {
-		$(this).css('z-index', ( 2000 + ( index * 10 ) ) )
+		$(this).css('z-index', ( 2000 - ( index * 10 ) ) )
 	});
 };
 
@@ -288,6 +288,7 @@ function Studio ( data , parent ) {
 	self.title = data.body.studio_name;
 	self.url = data.permalink;
 	self.loc = self.latlng( ( data.body.location.coordinates || "0,0" ) );
+	self.labelContent = document.createElement("div").innerHTML = self.title;
 	self.active = false;
 	self.saved = false;
 
@@ -296,14 +297,34 @@ function Studio ( data , parent ) {
 }
 
 Studio.prototype.init = function( ) {
-	var self = this;
+	var self = this,
+		boxOpts = {
+			content: self.labelContent,
+			disableAutoPan: false,
+			maxWidth: 0,
+			pixelOffset: new google.maps.Size( -8 , -42 ),
+			zIndex: null,
+			boxStyle: {
+				"padding" : "0.5em 1em"
+			},
+			boxClass: "pin-label",
+			closeBoxURL: "",
+			infoBoxClearance: new google.maps.Size(1, 1),
+			isHidden: false,
+			pane: "floatPane",
+			enableEventPropagation: false
+		};
 
 	self.marker = self.pin();
+
+	self.label = new InfoBox( boxOpts );
+	self.label.open( self.listings.gmap , self.marker );
+	self.label.setVisible(false);
 };
 
 Studio.prototype.latlng = function( coords ) {
 	var self = this,
-		split = ( coords ? coords.split(',') : [0,0] ),
+		split = ( typeof coords !== "undefined" ? coords.split(',') : ["0","0"] ),
 		location = new google.maps.LatLng( parseFloat( split[0] ) , parseFloat( split[1] ) );
 
 	return location;
@@ -321,7 +342,7 @@ Studio.prototype.pin = function( ) {
 		},
 		pin = new google.maps.Marker({
 			position: self.loc,
-			map: map,
+			map: self.listings.gmap,
 			title: self.title,
 			animation: google.maps.Animation.DROP,
 			icon: pinImage
@@ -332,6 +353,17 @@ Studio.prototype.pin = function( ) {
 	google.maps.event.addListener( pin , 'click', function( ) {
 		self.open();
 	});
+
+	google.maps.event.addListener( pin , 'mouseover', function( ) {
+		self.label.setVisible(true);
+	});
+
+	google.maps.event.addListener( pin , 'mouseout', function( ) {
+		self.label.setVisible(false);
+	});
+
+
+
 
 	return pin;
 };
@@ -359,7 +391,7 @@ Studio.prototype.open = function( ) {
 Studio.prototype.show = function ( ) {
 	var self = this;
 
-	self.card.slideDown();
+	self.card.fadeIn();
 	self.expand();
 };
 
@@ -371,10 +403,13 @@ Studio.prototype.expand = function( ) {
 	self.active = true;
 
 	self.card.animate({
-		'margin-bottom' : 0
+		'margin-left' : 0
 	},{
-		duration : 250
+		duration : 250,
+		specialEasing : "easeOutBounce"
 	});
+
+	self.card.addClass('open');
 
 };
 
@@ -383,7 +418,7 @@ Studio.prototype.close = function( ) {
 
 	console.log("Closing.");
 
-	self.card.slideUp().remove();
+	self.card.fadeOut().remove();
 	self.card = null;
 	self.loaded = false;
 	self.active = false;
@@ -400,10 +435,13 @@ Studio.prototype.collapse = function ( ) {
 	var self = this;
 
 	self.card.animate({
-		'margin-bottom' : ( ( - self.card.height() ) + 25 ) + 'px'
+		'margin-left' : ( ( - self.card.outerWidth() ) + 32 ) + 'px'
 	},{
-		duration : 250
+		duration : 250,
+		specialEasing : "easeOutBounce"
 	});
+
+	self.card.removeClass('open');
 
 	self.active = false;
 };
@@ -411,7 +449,7 @@ Studio.prototype.collapse = function ( ) {
 Studio.prototype.load = function( ) {
 	var self = this;
 	$.ajax({
-		url : self.url,
+		url : self.url + "?ajax=true",
 		method : "GET",
 		success : function ( data ) {
 			self.build( data );
@@ -430,8 +468,15 @@ Studio.prototype.build = function ( html ) {
 	$( html ).appendTo( self.listings.cardHolder );
 
 	self.card = $( '#studio-' + self.id );
-	self.card.on( 'click.Studio' , function ( ) {
-		self.open();
+	self.card.on( 'click.Studio.open' , function ( ) {
+		if ( !self.active ) {
+			self.expand();
+		}
+	});
+
+	self.card.find('.minimize').on( 'click.Studio.close' , function ( e ) {
+		e.stopPropagation();
+		self.collapse();
 	});
 
 	self.closeBtn = self.card.find('.close');
@@ -450,6 +495,7 @@ Studio.prototype.destroy = function ( ) {
 		self.close();
 	}
 	
+	self.label.close();
 	self.marker.setMap( null );
 	self.loaded = false;
 

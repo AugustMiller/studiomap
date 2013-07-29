@@ -65,17 +65,19 @@ get_header(); ?>
 							<h3>
 								Specialties
 							</h3>
-							<?php foreach ( $specialties as $specialty ) { ?>
-							<div class="field boolean">
-								<label>
-									<input class="checkbox" type="checkbox" value="<?php echo $specialty->term_id; ?>" name="specialties[<?php echo $i; ?>]" />
-									<div class="label-text">
-										<?php echo $specialty->name; ?>
-										<span class="count">(<?php echo $specialty->count; ?>)</span>
-									</div>
-								</label>
+							<div class="tag-list">
+								<?php foreach ( $specialties as $specialty ) { ?>
+								<div class="field boolean tag">
+									<label>
+										<input class="checkbox" type="checkbox" value="<?php echo $specialty->term_id; ?>" name="specialties[<?php echo $i; ?>]" />
+										<div class="label-text">
+											<?php echo $specialty->name; ?>
+											<span class="count">(<?php echo $specialty->count; ?>)</span>
+										</div>
+									</label>
+								</div>
+								<?php $i++; } ?>
 							</div>
-							<?php $i++; } ?>
 						</div>
 					</div>
 
@@ -93,17 +95,19 @@ get_header(); ?>
 							<h3>
 								Groups
 							</h3>
-							<?php foreach ( $categories as $category ) { ?>
-							<div class="field boolean">
-								<label>
-									<input class="checkbox" type="checkbox" value="<?php echo $category->term_id; ?>" name="categories[<?php echo $i; ?>]" />
-									<div class="label-text">
-										<?php echo $category->name; ?>
-										<span class="count">(<?php echo $category->count; ?>)</span>
-									</div>
-								</label>
+							<div class="category-list">
+								<?php foreach ( $categories as $category ) { ?>
+								<div class="field boolean category">
+									<label>
+										<input class="checkbox" type="checkbox" value="<?php echo $category->term_id; ?>" name="categories[<?php echo $i; ?>]" />
+										<div class="label-text">
+											<?php echo $category->name; ?>
+											<span class="count">(<?php echo $category->count; ?>)</span>
+										</div>
+									</label>
+								</div>
+								<?php $i++; } ?>
 							</div>
-							<?php $i++; } ?>
 						</div>
 
 					</div>
@@ -123,6 +127,7 @@ get_header(); ?>
 					};
 
 				$(document).ready( function ( ) {
+					$('section.cards').css( 'top' , $('section.menu').height() );
 					Locations = new Studios( "<?php echo admin_url( 'admin-ajax.php' ); ?>" , "<?php bloginfo('stylesheet_directory'); ?>" );
 					Locations.query();
 				});

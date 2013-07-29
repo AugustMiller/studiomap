@@ -41,8 +41,6 @@
 
 		<script type="text/javascript" src="//use.typekit.net/rpd3hfk.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-		
-		<script type="text/javascript" href="<?php bloginfo('template_directory'); ?>/js/infobox.js"></script>
 
 		<?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
 
