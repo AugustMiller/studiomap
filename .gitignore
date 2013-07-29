@@ -7,3 +7,5 @@ wp-config-prod.php
 .sass-cache/*
 
 *.scssc
+
+*.css

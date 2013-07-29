@@ -626,28 +626,29 @@ section.cards .rolodex .card h2 {
   font-weight: 200;
   font-style: italic;
   font-size: 175%;
+  line-height: 1.3em;
   letter-spacing: 0.08em;
   margin-bottom: 2em;
 }
-/* line 94, ../sass/_rolodex.scss */
+/* line 95, ../sass/_rolodex.scss */
 section.cards .rolodex .card .stats {
   display: table;
   width: 100%;
   margin-bottom: 1em;
 }
-/* line 99, ../sass/_rolodex.scss */
+/* line 100, ../sass/_rolodex.scss */
 section.cards .rolodex .card .stats .stat {
   display: table-cell;
   padding-right: 2em;
 }
-/* line 103, ../sass/_rolodex.scss */
+/* line 104, ../sass/_rolodex.scss */
 section.cards .rolodex .card .stats .stat .stat-label {
   border-bottom: 1px solid #cecece;
   font-size: 75%;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-/* line 110, ../sass/_rolodex.scss */
+/* line 111, ../sass/_rolodex.scss */
 section.cards .rolodex .card .stats .stat .stat-value.number {
   font-size: 150%;
   font-weight: 100;
@@ -655,19 +656,19 @@ section.cards .rolodex .card .stats .stat .stat-value.number {
   margin-top: 0.25em;
   color: silver;
 }
-/* line 117, ../sass/_rolodex.scss */
+/* line 118, ../sass/_rolodex.scss */
 section.cards .rolodex .card .stats .stat .stat-value.text {
   margin-top: 0.35em;
 }
-/* line 125, ../sass/_rolodex.scss */
+/* line 126, ../sass/_rolodex.scss */
 section.cards .rolodex .card .principals .principal {
   margin-bottom: 0.35em;
 }
-/* line 128, ../sass/_rolodex.scss */
+/* line 129, ../sass/_rolodex.scss */
 section.cards .rolodex .card .principals .principal .name, section.cards .rolodex .card .principals .principal .role {
   display: block;
 }
-/* line 132, ../sass/_rolodex.scss */
+/* line 133, ../sass/_rolodex.scss */
 section.cards .rolodex .card .principals .principal .role {
   color: #b4b4b4;
   font-style: italic;
@@ -675,7 +676,7 @@ section.cards .rolodex .card .principals .principal .role {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-/* line 143, ../sass/_rolodex.scss */
+/* line 144, ../sass/_rolodex.scss */
 section.cards .rolodex .card .tags span {
   color: #b4b4b4;
 }
