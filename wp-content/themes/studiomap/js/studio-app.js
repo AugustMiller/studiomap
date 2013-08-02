@@ -311,7 +311,7 @@ Studio.prototype.init = function( ) {
 			content: self.labelContent,
 			disableAutoPan: false,
 			maxWidth: 0,
-			pixelOffset: new google.maps.Size( -8 , -42 ),
+			pixelOffset: new google.maps.Size( 10 , -65 ),
 			zIndex: null,
 			boxStyle: {
 				"padding" : "0.5em 1em"
@@ -369,9 +369,6 @@ Studio.prototype.pin = function( ) {
 	google.maps.event.addListener( pin , 'mouseout', function( ) {
 		self.label.setVisible(false);
 	});
-
-
-
 
 	return pin;
 };
